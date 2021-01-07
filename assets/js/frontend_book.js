@@ -153,7 +153,7 @@ window.FrontendBook = window.FrontendBook || {};
             }
 
             $selectService.trigger('change'); // Load the available hours.
-
+        
             // Check if a specific provider was selected.
             var selectedProviderId = GeneralFunctions.getUrlParameter(location.href, 'provider');
 
@@ -176,6 +176,7 @@ window.FrontendBook = window.FrontendBook || {};
                     .trigger('change');
             }
 
+            FrontendBookApi.googleSync();
         }
     };
 
@@ -204,6 +205,7 @@ window.FrontendBook = window.FrontendBook || {};
          * Whenever the provider changes the available appointment date - time periods must be updated.
          */
         $('#select-provider').on('change', function () {
+            FrontendBookApi.googleSync();
             FrontendBookApi.getUnavailableDates($(this).val(), $('#select-service').val(),
                 $('#select-date').datepicker('getDate').toString('yyyy-MM-dd'));
             FrontendBook.updateConfirmFrame();
