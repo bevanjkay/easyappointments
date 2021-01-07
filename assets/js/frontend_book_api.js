@@ -26,6 +26,12 @@ window.FrontendBookApi = window.FrontendBookApi || {};
     var selectedDateStringBackup;
     var processingUnavailabilities = false;
 
+    exports.googleSync = function() {
+        var provider_id= $('#select-provider').val();
+        var getUrl = GlobalVariables.baseUrl + '/index.php/google/sync/' + provider_id;
+        jQuery.get(getUrl,provider_id, console.log('Google sync successful'),'json');
+    }
+
     /**
      * Get Available Hours
      *
