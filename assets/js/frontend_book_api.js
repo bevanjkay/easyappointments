@@ -29,7 +29,7 @@ window.FrontendBookApi = window.FrontendBookApi || {};
     exports.googleSync = function() {
         var provider_id= $('#select-provider').val();
         var getUrl = GlobalVariables.baseUrl + '/index.php/google/sync/' + provider_id;
-        jQuery.get(getUrl,provider_id, console.log('Google sync successful'),'json');
+        jQuery.get(getUrl,null, console.log('Google sync successful'),'json');
     }
 
     /**

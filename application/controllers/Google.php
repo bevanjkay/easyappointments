@@ -45,10 +45,10 @@ class Google extends EA_Controller {
             $CI = get_instance();
 
             // The user must be logged in.
-            if ($CI->session->userdata('user_id') == FALSE && is_cli() === FALSE)
-            {
-                return;
-            }
+            // if ($CI->session->userdata('user_id') == FALSE && is_cli() === FALSE)
+            // {
+            //     return;
+            // }
 
             if ($provider_id === NULL)
             {
