@@ -52,7 +52,7 @@ class Google extends EA_Controller {
 
             if ($provider_id === NULL)
             {
-                throw new Exception('Provider id not specified.');
+                throw new Exception('Continue');
             }
 
             $CI->load->model('appointments_model');
@@ -68,7 +68,7 @@ class Google extends EA_Controller {
 
             if ( ! $google_sync)
             {
-                throw new Exception('The selected provider has not the google synchronization setting enabled.');
+               throw new Exception('Continue');
             }
 
             $google_token = json_decode($CI->providers_model->get_setting('google_token', $provider['id']));
@@ -228,6 +228,10 @@ class Google extends EA_Controller {
         }
         catch (Exception $exception)
         {
+            if ($exception->getMessage() === 'Continue') {
+                $response = 'Non fatal error';
+            } else {
+
             $CI->output->set_status_header(500);
 
             $response = [
@@ -235,10 +239,6 @@ class Google extends EA_Controller {
                 'trace' => config('debug') ? $exception->getTrace() : []
             ];
         }
-
-        $CI->output
-            ->set_content_type('application/json')
-            ->set_output(json_encode($response));
     }
 
     /**
